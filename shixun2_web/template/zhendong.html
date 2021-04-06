@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="/static/js/echarts.min.js"></script>
+		<script src="/static/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css"/>
+		<style>
+
+			body{
+
+
+		            background:url("/static/img/back.png") no-repeat ;
+
+		            -webkit-background-size: cover;
+		            -moz-background-size: cover;
+		            -o-background-size: cover;
+		            background-size: cover;*/
+
+		        }
+
+            #lefts{
+
+            	float: left;
+            	bottom: 0px;
+            	width: 48%;
+            	height:250px;
+            	<!--border: 1px solid red;-->
+            }
+
+
+            #rights{
+
+            	float: right;
+            	bottom: 0px;
+            	width: 48%;
+            	height:250px;
+            	<!--border: 1px solid red;-->
+
+            }
+
+            #info{
+            	float:right;
+            	margin-top:10px;
+            	width: 100%;
+            	height: 400px;
+            	clear: both;
+                margin-left: -350px;
+                padding-right:20px;
+            	<!--border:1px solid red;-->
+
+
+            }
+              #info h4{
+            	color: rgb(192,192,255);
+            	display:block;
+            	margin: 1px auto;
+            	padding-left: 30px;
+                padding-top: 3px;
+                padding-bottom: 1px;
+            }
+            table{
+               text-align: center;
+            }
+            table th{
+            	 text-align: center;
+            }
+             #img_text {
+
+                margin-top: 20px;
+                margin-left:-30px;
+                float:left;
+            	width: 250px;
+                height:230px;
+            	background-image: url("/static/img/fengji.png");
+                background-position: -680px -198px;
+
+            }
+            #detial{
+            	width: 400px;
+            	height: 300px;
+            	float: left;
+
+            	color: beige;
+            	padding-top: 50px;
+            	padding-left: 100px;
+            }
+            #power_main{
+
+               float: left;
+               margin-top:15px;
+            	width: 48%;
+            	height:350px;
+
+            	clear: both;
+
+            }
+             #right_pot{
+
+            	float: right;
+                margin-top: -240px;
+            	width: 100%;
+            	height:350px;
+
+            	clear: both;
+
+            }
+
+
+
+		</style>
+	</head>
+	<body>
+
+
+
+			<!--右上信息栏-->
+		   <div id="lefts">
+
+
+			   	<div id="img_text"></div>
+                  <div id="detial">
+                    <h4>风机详情</h4>
+                    <p>风机名称&nbsp;&nbsp;C78</p>
+		   		    <p>发布时间&nbsp;&nbsp;2020-01-01 08:08:42</p>
+					  <p>首页&nbsp;&nbsp;<button><a href="/index_page">详情</a></button></p>
+					  <p>风功率&nbsp;&nbsp;<button><a href="/power">无预警</a></button></p>
+					  <p>偏航对风不准&nbsp;&nbsp;<button><a href="/duifeng" >无预警</a></button></p>
+
+                  </div>
+		         </div>
+
+               <!--左下图表栏-->
+                <div id="power_main" >
+
+                </div>
+
+
+		    </div>
+
+
+
+
+
+    <div id="rights">
+
+
+        	 <!--<右上功率曲线>-->
+        <div id="right_pot">
+
+
+        </div>
+
+   </div>
+
+
+
+	</body>
+	<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
+    <script src="/static/js/power_plt.js"></script>
+	<script src="/static/js/updata_page_info.js"></script>
+    <script type="text/javascript">
+
+     var myChart2 = echarts.init(document.getElementById('power_main'));
+        option = {
+            title: {
+        text: '机舱x轴方向震动损失',
+        textStyle:{ //设置主标题风格
+            color:'#fff'
+
+            }
+          },
+            xAxis: {
+                type: 'category',
+                data: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,27,29,30]
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: [0.2818259,0.13537279,0.08922271,0.070890054,0.061423134,0.0552623,0.050593287,0.046775904,0.04354439,0.04075785,0.03831681,0.03614729,0.03419877,0.03243631,0.030834548,0.029373279,0.028036295,0.026811033,0.025687918,0.024658594,0.02371424,0.022845695,0.022043971,0.021300683,0.02060814,0.019959697,0.019349633,0.018772885,0.018224973,0.017702475,0.017203748,0.016728977,0.016278036,0.015849514,0.01544155,0.015052321,0.0146800475,0.014323013,0.013979386],
+                type: 'line'
+            }]
+        };
+         myChart2.setOption(option);
+
+
+         var myChart3 = echarts.init(document.getElementById('right_pot'));
+        option = {
+            title: {
+        text: '机舱y轴方向震动损失',
+        textStyle:{ //设置主标题风格
+            color:'#fff'
+
+            }
+          },
+            xAxis: {
+                type: 'category',
+                data: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,27,29,30]
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: [0.2818259,0.13537279,0.08922271,0.070890054,0.061423134,0.0552623,0.050593287,0.046775904,0.04354439,0.04075785,0.03831681,0.03614729,0.03419877,0.03243631,0.030834548,0.029373279,0.028036295,0.026811033,0.025687918,0.024658594,0.02371424,0.022845695,0.022043971,0.021300683,0.02060814,0.019959697,0.019349633,0.018772885,0.018224973,0.017702475,0.017203748,0.016728977,0.016278036,0.015849514,0.01544155,0.015052321,0.0146800475,0.014323013,0.013979386],
+                type: 'line'
+            }]
+        };
+         myChart3.setOption(option);
+
+
+     </script>
+
+
+</html>

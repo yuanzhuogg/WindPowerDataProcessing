@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="/static/js/echarts.min.js"></script>
+		<script src="/static/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css"/>
+		<style>
+
+			body{
+
+
+		            background:url("/static/img/back.png") no-repeat ;
+
+		            -webkit-background-size: cover;
+		            -moz-background-size: cover;
+		            -o-background-size: cover;
+		            background-size: cover;*/
+
+		        }
+
+            #lefts{
+
+            	float: left;
+            	bottom: 0px;
+            	width: 48%;
+            	height:250px;
+            	<!--border: 1px solid red;-->
+            }
+
+
+            #rights{
+
+            	float: right;
+            	bottom: 0px;
+            	width: 48%;
+            	height:250px;
+            	<!--border: 1px solid red;-->
+
+            }
+
+            #info{
+            	float:right;
+            	margin-top:10px;
+            	width: 100%;
+            	height: 400px;
+            	clear: both;
+                margin-left: -350px;
+                padding-right:20px;
+            	<!--border:1px solid red;-->
+
+
+            }
+              #info h4{
+            	color: rgb(192,192,255);
+            	display:block;
+            	margin: 1px auto;
+            	padding-left: 30px;
+                padding-top: 3px;
+                padding-bottom: 1px;
+            }
+            table{
+               text-align: center;
+            }
+            table th{
+            	 text-align: center;
+            }
+             #img_text {
+
+                margin-top: 20px;
+                margin-left:-30px;
+                float:left;
+            	width: 250px;
+                height:230px;
+            	background-image: url("/static/img/fengji.png");
+                background-position: -680px -198px;
+
+            }
+            #detial{
+            	width: 400px;
+            	height: 300px;
+            	float: left;
+
+            	color: beige;
+            	padding-top: 50px;
+            	padding-left: 100px;
+            }
+            #power_main{
+
+               float: left;
+               margin-top:5px;
+            	width: 48%;
+            	height:350px;
+
+            	clear: both;
+
+            }
+             #right_pot{
+
+            	float: right;
+                margin-top: -240px;
+            	width: 100%;
+            	height:280px;
+
+            	clear: both;
+
+            }
+
+
+
+		</style>
+	</head>
+	<body>
+
+
+
+			<!--右上信息栏-->
+		   <div id="lefts">
+
+
+			   	<div id="img_text"></div>
+                  <div id="detial">
+                    <h4>风机详情</h4>
+                    <p>风机名称&nbsp;&nbsp;C78</p>
+		   		    <p>发布时间&nbsp;&nbsp;2020-01-01 08:08:42</p>
+					  <p>首页&nbsp;&nbsp;<button><a href="/index_page">详情</a></button></p>
+					  <p>偏航对分不准&nbsp;&nbsp;<button><a href="#" >无预警</a></button></p>
+                  </div>
+		         </div>
+
+               <!--左下图表栏-->
+                <div id="power_main" >
+
+                </div>
+
+
+		    </div>
+
+
+
+
+
+    <div id="rights">
+
+
+
+        	 <!--<右上功率曲线>-->
+        <div id="right_pot">
+        </div>
+
+    <!--右下信息栏-->
+		  <div id="info">
+			  <h4>数据监控</h4>
+			   <!--<div id="#" style="width: 100%;height: 1px;border: 1px solid beige;" ></div>-->
+		  	  <table class="table table-bordered" id='updata_info' style="color: rgb(255,255,255)">
+				  <thead>
+				    <tr style="text-align: center">
+
+				      <th scope="col">时间</th>
+				      <th scope="col">功率</th>
+				      <th scope="col">风速</th>
+				      <th scope="col">偏向角</th>
+				    </tr>
+				  </thead>
+
+				  <tbody>
+
+				  </tbody>
+				</table>
+
+		  </div>
+
+   </div>
+
+
+
+	</body>
+	<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
+    <script src="/static/js/power_plt.js"></script>
+	<script src="/static/js/updata_page_info.js"></script>
+    <script type="text/javascript">
+     updata_page_info();
+	 setInterval('updata_page_info()',3000);
+     power();
+
+  var myChart2 = echarts.init(document.getElementById('right_pot'));
+        // 指定图表的配置项和数据
+  setTimeout(function () {
+
+    option = {
+        legend: {},
+        title: {
+        text: '春夏季功率曲线',
+        textStyle:{ //设置主标题风格
+            color:'#fff'
+
+            }
+    },
+        tooltip: {
+            trigger: 'axis',
+            showContent: false
+        },
+        dataset: {
+            source: [
+                <!--['风速', '2012', '2013', '2014', '2015', '2016', '2017'],-->
+                ['风速',2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0,8.5,9.0,9.5,10.0,10.5,11.0,11.5,12.0,12.5,13.0,13.5,14.0,14.5,15.0,15.5,16.0,16.5,17.0,17.5,18.0,18.5,19.0,19.5,20.0,20.5,21.0,21.5,22.0],
+                <!--['春季功率曲线', 41.1, 30.4, 65.1, 53.3, 83.8, 98.7],-->
+                ['春季功率曲线',16.0,33.0,70.0,113.0,162.0,215.0,275.0,348.0,435.0,542.0,655.0,779.0,919.0,1052.0,1205.0,1360.0,1497.0,1511.0,1514.0,1514.0,1513.0,1512.0,1511.0,1511.0,1510.0,1510.0,1509.0,1509.0,1509.0,1509.5,1505.0,1508.0,1513.0,1516.0,1507.0,1516.0,1519.5,1509.0,1515.5,1511.0],
+
+                <!--['夏季功率曲线', 86.5, 92.1, 85.7, 83.1, 73.4, 55.1],-->
+                 ['夏季功率曲线', 16.0,30.0,59.0,100.0,141.0,184.0,234.0,274.0,382.0,479.0,572.0,679.0,798.0,931.0,1074.0,1204.0,1332.0,1473.0,1488.0,1494.0,1496.0,1496.0,1496.0,1494.0,1493.0,1493.0,1493.0,1482.0,1486.0,1492.0,1491.0,1491.5,1472.0,1475.0, 1474.0,1494.0,1501.0,1489.0,1485.5,1504.0,1503.0,1498.5]
+
+            ]
+        },
+
+        xAxis: [
+        {
+            type: 'category',
+
+            axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
+
+        }
+    ],
+
+
+        yAxis: [
+        {
+            gridIndex: 0,
+
+            axisLabel: {
+                            show: true,
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
+
+        }
+    ],
+        grid: {top: '55%'},
+        series: [
+            {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+            {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+
+             {
+                type: 'pie',
+                id: 'pie',
+                radius: '30%',
+                center: ['50%', '25%'],
+                label: {
+                    formatter: '{b}: {@2012} ({d}%)'
+                },
+                encode: {
+                    itemName: 'product',
+                    value: '2012',
+                    tooltip: '2012'
+                }
+            }
+        ]
+    };
+
+    myChart2.on('updateAxisPointer', function (event) {
+        var xAxisInfo = event.axesInfo[0];
+        if (xAxisInfo) {
+            var dimension = xAxisInfo.value + 1;
+            myChart.setOption({
+                series: {
+                    id: 'pie',
+                    label: {
+                        formatter: '{b}: {@[' + dimension + ']} ({d}%)'
+                    },
+                    encode: {
+                        value: dimension,
+                        tooltip: dimension
+                    }
+                }
+            });
+        }
+    });
+
+    myChart2.setOption(option);
+
+});
+
+        // 使用刚指定的配置项和数据显示图表。
+
+
+     </script>
+
+
+</html>

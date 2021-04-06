@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="/static/js/echarts.min.js"></script>
+		<script src="/static/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css"/>
+		<style>
+			
+			body{
+				
+
+		            background:url("/static/img/back.png") no-repeat ;
+		       
+		            -webkit-background-size: cover;
+		            -moz-background-size: cover;
+		            -o-background-size: cover;
+		            background-size: cover;*/
+		            
+		        }
+           
+            #info{
+            	float: left;
+            	width: 45%;
+            	height: 500px;
+
+            	
+            }
+            #guider{
+            	
+            	float: right;
+            	bottom: 0px;
+            	width: 53%;
+            	height:250px;
+            	<!--border: 1px solid red;-->
+            }
+             
+            #main{
+            	
+            	float: right;
+            	bottom: 0px;
+            	width: 53%;
+            	height:380px;
+            }
+            #info h4{
+            	color: rgb(192,192,255);
+            	display:block;
+            	margin: 5px auto;
+            	padding-left: 30px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            table{
+               text-align: center;
+            }
+            table th{
+            	 text-align: center;
+            }
+             #img_text {
+
+                margin-top: 20px;
+                margin-left:-30px;
+                float:left;
+            	width: 250px;
+                height:230px;
+            	background-image: url("/static/img/fengji.png");
+                background-position: -680px -198px;
+
+            }
+            #detial{
+            	width: 400px;
+            	height: 300px;
+            	float: left;
+
+            	color: beige;
+            	padding-top: 50px;
+            	padding-left: 100px;
+            }
+             #detial button{
+
+             color: green;
+             }
+
+		</style>
+	</head>
+	<body>
+		  
+		  <!--左边信息栏-->
+		  <div id="info">
+			  <h4>数据监控</h4>
+			   <!--<div id="#" style="width: 100%;height: 1px;border: 1px solid beige;" ></div>-->
+		  	  <table class="table table-bordered" id='updata_info' style="color: rgb(255,255,255)">
+				  <thead>
+				    <tr style="text-align: center">
+				      
+				      <th scope="col">时间</th>
+				      <th scope="col">功率</th>
+				      <th scope="col">风速</th>
+				      <th scope="col">偏向角</th>
+				    </tr>
+				  </thead>
+
+				  <tbody>
+
+				  </tbody>
+				</table>
+
+		  </div>
+			
+			<!--右上信息栏-->
+		   <div id="guider">
+			   	<div id="img_text"></div>
+                <div id="detial">
+		   		<h4>风机详情</h4>
+		   		<p>风机名称&nbsp;&nbsp;C78</p>
+		   		<p>发布时间&nbsp;&nbsp;2020-01-01 08:08:42</p>
+				<p>风功率&nbsp;&nbsp;<button><a href="/power">无预警</a></button></p>
+		   		<p>偏航对风不准&nbsp;&nbsp;<button><a href="/duifeng"> 无预警</a></button></p>
+				<p>震动预警&nbsp;&nbsp;<button><a href="zhendong"> 无预警</a></button></p>
+
+		   	</div>
+		   </div>
+		   
+		   
+		   <!--右下图表栏-->
+			<div id="main" >
+			
+			</div>
+	        
+			
+		</div>
+		
+			
+		
+		
+	</body>
+	<script src="/static/js/updata_info.js"></script>
+	<script src="/static/js/power.js"></script>
+	<script type="text/javascript" src="/static/js/jquery.min.js" ></script>
+    <script type="text/javascript">
+	updata_info();
+	setInterval('updata_info()',3000);
+    power();
+    setInterval('power()',4000);
+</script>
+
+			
+</html>

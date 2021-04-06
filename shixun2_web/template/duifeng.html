@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>page2</title>
+
+		<script src="/static/js/echarts.min.js"></script>
+		<script src="/static/js/jquery.min.js"></script>
+		<script src="/static/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css"/>
+		<style>
+
+			body{
+
+		            background:url("/static/img/back.png") no-repeat  ;
+
+		            -webkit-background-size: cover;
+		            -moz-background-size: cover;
+		            -o-background-size: cover;
+		            background-size: cover;
+
+		        }
+
+
+			#main{
+				margin-top: 0px;
+				color: white;
+				position: absolute;
+				width: 500px;
+				height: 400px;
+				top: 300px;
+				left: 50px;
+            }
+
+			#updata_angle{
+				position: absolute;
+				width: 40%;
+				height: 600px;
+				top: 100px;
+				margin-top: 0px;
+				right: 60px;
+
+				color: white;
+				/*background: white;*/
+			}
+
+            table{
+               text-align: center;
+            }
+            table th{
+            	 text-align: center;
+            }
+
+             #detial button{
+
+             color: green;
+             }
+
+
+
+
+
+		</style>
+
+	</head>
+	<body>
+
+	<div style="width:200px; height:300px; position:absolute;right:850px;top:10px;">
+		<img src="/static/img/fengji2.png" style="width:200px;height:300px;position:absolute;transform: rotateY(180deg);"/>
+	</div>
+
+			<!--左上信息栏-->
+	<div style="height: 240px; width:300px; position:absolute; top: 60px; left: 80px;color: white;">
+		<div style="height: 200px; width:280px; position:absolute;top: 30px;left: 60px;">
+			<h4>风机详情</h4>
+		   		<p>风机名称&nbsp;&nbsp;C78(26)</p>
+		   		<p>首页&nbsp;&nbsp;<button><a href="/index_page">详情</a></button></p>
+				<p>风功率&nbsp;&nbsp;<button><a href="/power">无预警</a></button></p>
+			   <p>震动预警&nbsp;&nbsp;<button><a href="/zhendong" >无预警</a></button></p>
+		</div>
+
+	</div>
+
+	<div id="main" ></div>
+	<div id="ap_line"></div>
+
+	<!--右边信息栏-->
+<div id="updata_angle">
+ <h4>数据监控</h4>
+  <!--<div id="#" style="width: 100%;height: 1px;border: 1px solid beige;" ></div>-->
+     <table class="table table-bordered" id='page2_1' style="color: rgb(255,255,255)">
+  <thead>
+    <tr style="text-align: center">
+
+      <th scope="col">ID</th>
+      <th scope="col">偏角</th>
+      <th scope="col">功率</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+  </tbody>
+</table>
+
+</div>
+
+	</body>
+   <script src="/static/js/page2_info.js"></script>
+  <script type="text/javascript">
+
+	  var myChart = echarts.init(document.getElementById('main'));
+
+      setInterval('updata_ap()',3000);
+
+          var angle = []
+		  //var angle1 = []
+		  var power = []
+		  //var power1 = []
+
+	  // function updata_ap() {
+		//   var ap_line = echarts.init(document.getElementById('ap_line'));
+	  //
+		//   $.get('/api/page2_1').done(function (response) {
+	  //
+		// 	  for (var i = 0; i < response.page2_1.data.length; i++) {
+		// 		  angle1[i] = response.page2_1.data[i][0]
+		// 		  power1[i] = response.page2_1.data[i][1]
+		// 	  }
+	  //
+		// 	  // myChart.setOption(option);
+		// 	//   ap_line.setOption({
+		// 	//
+		//   // });
+	  //
+		//   });
+	  // };
+
+
+	$.get('/api/page2').done(function (response) {
+
+		for (var i = 0;  i< response.page2.data.length; i++) {
+			angle[i] = response.page2.data[i][1]
+			power[i] =response.page2.data[i][2]
+		}
+
+
+		myChart.setOption({
+
+    xAxis: {
+        type: 'category',
+        data: angle,
+		axisLine: {
+                    lineStyle: {
+                        type: 'solid',
+                        color: '#fff',//左边线的颜色
+                        width:'2'//坐标线的宽度
+                    }
+                },
+		  axisLabel: {
+                    textStyle: {
+                        color: '#fff',//坐标值得具体的颜色
+
+                    }
+                }
+    },
+    yAxis: {
+    	scale: true,
+        type: 'value',
+		axisLine: {
+                    lineStyle: {
+                        type: 'solid',
+                        color: '#fff',//左边线的颜色
+                        width:'2'//坐标线的宽度
+                    }
+                },
+		  axisLabel: {
+                    textStyle: {
+                        color: '#fff',//坐标值得具体的颜色
+
+                    }
+                }
+    },
+    series: [{
+        data: power,
+        type: 'line',
+        smooth: true,
+
+		markPoint:{
+          data:[
+            {type:'max',name:'最大值',symbol:'circle'},
+          ],
+			itemStyle : {
+								normal : {
+									color:'#00FF00',
+									// lineStyle:{
+									// 	color:'#00FF00'
+									// }
+								}
+							}
+        },
+
+		// markLine:{
+		// 				symbol: "arrow",
+		// 				data:[
+		// 					{type : 'max', name: '最大值'},    // 最大值水平线或垂直线
+		// 				    // {type : 'average', name: '平均值'}// 平均值水平线或垂直线
+		// 				]
+		// 			}
+
+    }]
+
+
+});
+
+	});
+
+
+</script>
+
+</html>
