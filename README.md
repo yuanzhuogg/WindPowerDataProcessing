@@ -6,5 +6,6 @@
 
 运行环境：
    数据清洗环境：  python 3.7 + pandas 0.24.1 + jupyter 1.0.0 + notebook 5.7.4 + pymysql 0.9.3
-   python web 项目运行环境   python 3.7 + tornado 6.0.2
+   
+   python web 项目运行环境：python 3.7 + tornado 6.0.2
  
