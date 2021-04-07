@@ -7,9 +7,9 @@
   文件（shixun2_web） 为python web项目，进行数据可视化；文件（数据处理代码） 为原始数据的处理代码；文件（shixun_info.sql）为已清洗好的数据
 
 运行环境：
-   数据清洗环境：  python 3.7 + pandas 0.24.1 + jupyter 1.0.0 + notebook 5.7.4 + pymysql 0.9.3
+   数据清洗环境：  python 3.7 + pandas 0.24.1 + jupyter 1.0.0 + notebook 5.7.4 + pymysql 0.9.3；开发工具eclipse
    
-   python web 项目运行环境：python 3.7 + tornado 6.0.2
+   python web 项目运行环境：python 3.7 + tornado 6.0.2 ；开发工具pycharm
    
    
 运行流程：
